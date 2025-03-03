@@ -1,0 +1,20 @@
+     1                                  ; x86 Assembly Program to Add Two Numbers
+     2                                  ; Using NASM syntax
+     3                                  
+     4                                  section .data           ; Data section
+     5 00000000 05000000                    num1    dd  5       ; First number (32-bit integer)
+     6 00000004 03000000                    num2    dd  3       ; Second number (32-bit integer)
+     7 00000008 00000000                    result  dd  0       ; Storage for result
+     8                                  
+     9                                  section .text           ; Code section
+    10                                      global _start       ; Entry point for linker
+    11                                  
+    12                                  _start:
+    13 00000000 A1[00000000]                mov eax, [num1]     ; Load first number into EAX register
+    14 00000005 0305[04000000]              add eax, [num2]     ; Add second number to EAX
+    15 0000000B A3[08000000]                mov [result], eax   ; Store result in memory
+    16                                  
+    17                                      ; Exit program (Linux system call example)
+    18 00000010 B801000000                  mov eax, 1          ; System call number for exit
+    19 00000015 BB00000000                  mov ebx, 0          ; Return code 0
+    20 0000001A CD80                        int 0x80            ; Make system call

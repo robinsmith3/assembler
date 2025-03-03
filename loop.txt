@@ -1,0 +1,18 @@
+10 REM BBC BASIC Assembler Loop Example - Count 0 to 5
+20 DIM code 100          : REM Reserve space for code
+30 P%=&8000             : REM Set program counter to &8000
+40 [
+50 .start
+60 LDX #0              
+70 .loop
+80 STX &70             
+90 INX                 
+100 CPX #6             
+110 BNE loop           
+120 RTS                
+130 ]
+140 PRINT "Running loop..."
+150 CALL &8000          : REM Execute the code
+160 FOR I%=0 TO 5       : REM Print results
+170 PRINT "Location &";HEX$(I%+&70);": ";?(I%+&70)
+180 NEXT I%

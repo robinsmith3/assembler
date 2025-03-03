@@ -1,0 +1,19 @@
+10 DIM code 20
+20 P%=&8000
+30 [
+40 .start
+50 LDA #5
+60 STA &70
+70 LDA #&FD
+80 STA &71
+90 CLC
+100 ADC &70
+110 STA &72
+120 RTS
+130 ]
+140 PRINT "Calling assembly..."
+150 CALL &8000
+160 PRINT "NUM1 (&70): ";?(&70)
+170 PRINT "NUM2 (&71): ";?(&71)
+180 PRINT "RESULT (&72): ";?(&72)
+190 IF ?(&71)>127 THEN PRINT "NUM2 signed: ";(?(&71)-256) ELSE PRINT "NUM2 signed: ";?(&71)
